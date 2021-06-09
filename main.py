@@ -205,6 +205,20 @@ async def graph(ctx, typeOfGraph, username, hoursWanted):
       newUsername=username.replace("#", "-")
       plt.savefig(newUsername+'.png')
       await ctx.channel.send(file=discord.File(newUsername+'.png'))
+
+@client.command()
+async def helpOW(ctx):
+  embed=discord.Embed(
+  title = "Overwatch Stats Help",
+  url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  colour = discord.Colour.green()
+  )
+  embed.set_footer(text="Requested by "+ctx.author.display_name)
+  embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Overwatch_circle_logo.svg/600px-Overwatch_circle_logo.svg.png")
+  embed.add_field(name="Get Stats", value= "$stats BATTLENET", inline=False)
+  embed.add_field(name="Plot stats on graph", value= "$graph SR/level BATTLENET hours", inline=False)
+  await ctx.channel.send(embed=embed)
+
 @tasks.loop(minutes=30.0)
 async def logStats():
   statLogger()
